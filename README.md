@@ -23,5 +23,5 @@ cd www/
 ```
 
 ## See "Hello, world" from a browser
-http://localhost or http://localhost:8000, see port number in log when start http server.
+[http://localhost](http://localhost) or [http://localhost:8000](http://localhost:8000), see port number in log when start http server.
 
