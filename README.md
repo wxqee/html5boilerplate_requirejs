@@ -82,3 +82,9 @@ require([ 'jquery', 'plugins' ], function( $ ){
   });
 });
 ```
+
+## Use CSS for modules of require.js
+Use github project [loadCSS](https://github.com/filamentgroup/loadCSS) here.
+
+
+
