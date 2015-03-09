@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PORT=`[ x"$(whoami)" == x"root" ] && echo 80 || echo 8000`
+export PORT
+
+python -m SimpleHTTPServer $PORT
