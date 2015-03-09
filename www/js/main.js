@@ -1,7 +1,8 @@
 requirejs.config({
   baseUrl: 'js',
   paths: {
-    jquery: 'vendor/jquery-1.11.2.min'
+    jquery: 'vendor/jquery-1.11.2.min',
+    modernizr: 'vendor/modernizr-2.8.3.min'
   },
   map: {
     '*': {
@@ -11,7 +12,7 @@ requirejs.config({
 });
 
 require([
-  'jquery', 'plugins',
+  'jquery', 'modernizr', 'plugins',
   'loadCSS!css/normalize.css',
   'loadCSS!css/main.css'
 ], function( $ ){
