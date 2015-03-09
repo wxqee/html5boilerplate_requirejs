@@ -86,5 +86,23 @@ require([ 'jquery', 'plugins' ], function( $ ){
 ## Use CSS for modules of require.js
 Use github project [loadCSS](https://github.com/filamentgroup/loadCSS) here.
 
+Locate to `js/helpers/loadCSS/loadCSS.js`
+```bash
+cd www
+mkdir -p js/helpers/loadCSS/
+wget https://raw.githubusercontent.com/filamentgroup/loadCSS/master/loadCSS.js -O js/helpers/loadCSS/loadCSS.js
+```
+
+Create wrapper as `js/helpers/loadCSS/wrapper.js`.
+```javascript
+define({
+  load: function (name, req, onload, config) {
+    req([ config.baseUrl + 'helpers/loadCSS/loadCSS.js' ], function(){
+      loadCSS( name );
+    });
+  }
+});
+
+```
 
 
