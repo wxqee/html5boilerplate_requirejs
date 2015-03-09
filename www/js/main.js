@@ -1,8 +1,28 @@
 requirejs.config({
   baseUrl: 'js',
+  shim: {
+    jquery: {
+      exports: 'jQuery'
+    },
+    underscore: {
+      exports: '_'
+    },
+    backbone: {
+      deps: [ 'underscore', 'jquery' ],
+      exports: 'Backbone'
+    },
+    backboneLocalstorage: {
+      deps: [ 'backbone' ],
+      exports: 'Store'
+    }
+  },
   paths: {
+    modernizr: 'vendor/modernizr-2.8.3.min',
     jquery: 'vendor/jquery-1.11.2.min',
-    modernizr: 'vendor/modernizr-2.8.3.min'
+    underscore: 'vendor/underscore',
+    backbone: 'vendor/backbone-min',
+    backboneLocalstorage: 'vendor/backbone.localStorage-min',
+    text: 'vendor/text'
   },
   map: {
     '*': {
@@ -16,13 +36,17 @@ requirejs.config({
 
 require([
   'i18n!nls/main',
-  'modernizr', 'plugins', 'jquery',
+  'backbone',
+  'views/app',
+  'routers/router',
+  'modernizr',
+  'plugins',
   'loadCSS!css/normalize.css',
   'loadCSS!css/main.css',
-], function( main, $ ){
-  var m, p;
-  m = main.hi +" "+ main.whoami;
-  p = document.querySelectorAll( 'body > p' )[0];
-  p.innerHTML = m;
-  console.log( m );
+  'loadCSS!css/todo.css',
+], function(main, Backbone, AppView, Workspace){
+  new Workspace();
+  Backbone.history.start();
+
+  new AppView();
 });
