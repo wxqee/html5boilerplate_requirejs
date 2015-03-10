@@ -250,5 +250,7 @@ requirejs.config({
 
 * [A list of plugins](https://github.com/jrburke/requirejs/wiki/Plugins) (RequireJS)
 
+* [RequireJS Example Multipage](https://github.com/requirejs/example-multipage) 
+
 * [TodoMVC - Backbone+RequireJS](https://github.com/tastejs/todomvc/tree/master/examples/backbone_require)
 	* After configure with Backbone, you may need this example to learn Backbone with RequireJS.
