@@ -8,13 +8,21 @@ requirejs.config({
     '*': {
       'loadCSS': 'helpers/loadCSS/wrapper'
     }
+  },
+  config: {
+    i18n: { locale: 'zh-cn' }
   }
 });
 
 require([
+  'i18n!nls/main',
   'modernizr', 'plugins', 'jquery',
   'loadCSS!css/normalize.css',
-  'loadCSS!css/main.css'
-], function(){
-  console.log( 'Hello, world' );
+  'loadCSS!css/main.css',
+], function( main, $ ){
+  var m, p;
+  m = main.hi +" "+ main.whoami;
+  p = document.querySelectorAll( 'body > p' )[0];
+  p.innerHTML = m;
+  console.log( m );
 });
