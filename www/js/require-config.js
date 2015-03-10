@@ -28,6 +28,9 @@ requirejs.config({
     '*': {
       'loadCSS': 'helpers/loadCSS/wrapper'
     }
+  },
+  config: {
+    'i18n': { locale: 'zh-cn' }
   }
 });
 

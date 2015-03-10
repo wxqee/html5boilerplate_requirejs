@@ -1,4 +1,5 @@
 define({
   "hi": "你好，世界！",
-  "whoami": "我是 HTML5 Boilerplate"
+  "whoami": "我是 HTML5 Boilerplate",
+  "appList": "应用列表"
 });
