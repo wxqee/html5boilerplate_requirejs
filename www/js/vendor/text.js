@@ -1,12 +1,12 @@
 /**
- * @license RequireJS text 2.0.14 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: http://github.com/requirejs/text for details
- */
+* @license RequireJS text 2.0.10 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
+* Available via the MIT or new BSD license.
+* see: http://github.com/requirejs/text for details
+*/
 /*jslint regexp: true */
 /*global require, XMLHttpRequest, ActiveXObject,
-  define, window, process, Packages,
-  java, location, Components, FileUtils */
+define, window, process, Packages,
+java, location, Components, FileUtils */
 
 define(['module'], function (module) {
     'use strict';
@@ -23,7 +23,7 @@ define(['module'], function (module) {
         masterConfig = (module.config && module.config()) || {};
 
     text = {
-        version: '2.0.14',
+        version: '2.0.10',
 
         strip: function (content) {
             //Strips <?xml ...?> declarations so that external SVG and XML
@@ -65,7 +65,7 @@ define(['module'], function (module) {
                     } catch (e) {}
 
                     if (xhr) {
-                        progIds = [progId];  // so faster next time
+                        progIds = [progId]; // so faster next time
                         break;
                     }
                 }
@@ -75,23 +75,23 @@ define(['module'], function (module) {
         },
 
         /**
-         * Parses a resource name into its component parts. Resource names
-         * look like: module/name.ext!strip, where the !strip part is
-         * optional.
-         * @param {String} name the resource name
-         * @returns {Object} with properties "moduleName", "ext" and "strip"
-         * where strip is a boolean.
-         */
+* Parses a resource name into its component parts. Resource names
+* look like: module/name.ext!strip, where the !strip part is
+* optional.
+* @param {String} name the resource name
+* @returns {Object} with properties "moduleName", "ext" and "strip"
+* where strip is a boolean.
+*/
         parseName: function (name) {
             var modName, ext, temp,
                 strip = false,
-                index = name.lastIndexOf("."),
+                index = name.indexOf("."),
                 isRelative = name.indexOf('./') === 0 ||
                              name.indexOf('../') === 0;
 
             if (index !== -1 && (!isRelative || index > 1)) {
                 modName = name.substring(0, index);
-                ext = name.substring(index + 1);
+                ext = name.substring(index + 1, name.length);
             } else {
                 modName = name;
             }
@@ -119,13 +119,13 @@ define(['module'], function (module) {
         xdRegExp: /^((\w+)\:)?\/\/([^\/\\]+)/,
 
         /**
-         * Is an URL on another domain. Only works for browser use, returns
-         * false in non-browser environments. Only used to know if an
-         * optimized .js version of a text resource should be loaded
-         * instead.
-         * @param {String} url
-         * @returns Boolean
-         */
+* Is an URL on another domain. Only works for browser use, returns
+* false in non-browser environments. Only used to know if an
+* optimized .js version of a text resource should be loaded
+* instead.
+* @param {String} url
+* @returns Boolean
+*/
         useXhr: function (url, protocol, hostname, port) {
             var uProtocol, uHostName, uPort,
                 match = text.xdRegExp.exec(url);
@@ -162,12 +162,12 @@ define(['module'], function (module) {
 
             // Do not bother with the work if a build and text will
             // not be inlined.
-            if (config && config.isBuild && !config.inlineText) {
+            if (config.isBuild && !config.inlineText) {
                 onLoad();
                 return;
             }
 
-            masterConfig.isBuild = config && config.isBuild;
+            masterConfig.isBuild = config.isBuild;
 
             var parsed = text.parseName(name),
                 nonStripName = parsed.moduleName +
@@ -244,8 +244,7 @@ define(['module'], function (module) {
             typeof process !== "undefined" &&
             process.versions &&
             !!process.versions.node &&
-            !process.versions['node-webkit'] &&
-            !process.versions['atom-shell'])) {
+            !process.versions['node-webkit'])) {
         //Using special require.nodeRequire, something added by r.js.
         fs = require.nodeRequire('fs');
 
@@ -253,14 +252,12 @@ define(['module'], function (module) {
             try {
                 var file = fs.readFileSync(url, 'utf8');
                 //Remove BOM (Byte Mark Order) from utf8 files if it is there.
-                if (file[0] === '\uFEFF') {
+                if (file.indexOf('\uFEFF') === 0) {
                     file = file.substring(1);
                 }
                 callback(file);
             } catch (e) {
-                if (errback) {
-                    errback(e);
-                }
+                errback(e);
             }
         };
     } else if (masterConfig.env === 'xhr' || (!masterConfig.env &&
@@ -288,14 +285,12 @@ define(['module'], function (module) {
                 //Do not explicitly handle errors, those should be
                 //visible via console output in the browser.
                 if (xhr.readyState === 4) {
-                    status = xhr.status || 0;
+                    status = xhr.status;
                     if (status > 399 && status < 600) {
                         //An http 4xx or 5xx error. Signal an error.
                         err = new Error(url + ' HTTP status: ' + status);
                         err.xhr = xhr;
-                        if (errback) {
-                            errback(err);
-                        }
+                        errback(err);
                     } else {
                         callback(xhr.responseText);
                     }
@@ -352,7 +347,7 @@ define(['module'], function (module) {
             typeof Components !== 'undefined' && Components.classes &&
             Components.interfaces)) {
         //Avert your gaze!
-        Cc = Components.classes;
+        Cc = Components.classes,
         Ci = Components.interfaces;
         Components.utils['import']('resource://gre/modules/FileUtils.jsm');
         xpcIsWindows = ('@mozilla.org/windows-registry-key;1' in Cc);
