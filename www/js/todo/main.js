@@ -1,6 +1,9 @@
 
 require([ '../require-config' ], function() {
 
+/**
+ * Adapter to TodoMVC app without change codes
+ **/
 requirejs.config({
   paths: {
     routers: "todo/routers",
@@ -12,6 +15,9 @@ requirejs.config({
   }
 });
 
+/**
+ * TodoMVC kick-start based on HTML5 Boilerplate
+ **/
 require([
   'backbone',
   'views/app',
