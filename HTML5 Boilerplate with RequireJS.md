@@ -4,7 +4,7 @@
 [TOC]
 
 ## Code base: HTML5 Boilerplate
-Download **html5-boilerplate_v5.0.0.zip** from [HTML5 Boilerplate](html5boilerplate.com). And put files in your **public** folder.
+Download **html5-boilerplate_v5.0.0.zip** from [HTML5 Boilerplate](http://html5boilerplate.com). And put files in your **public** folder.
 
 You will see files:
 ```bash
@@ -49,7 +49,7 @@ Open your favorite HTML5 browser and access code base. Mine is http://centos.xia
 ## + RequireJS
 We already have a code base which HTML5 Boilerplate. In the code base, we have only **One** page **index.html** with entrance **js/main.js**. We are using the same code structure to support RequireJS.
 
-Now let's add [require.js](requirejs.org) in.
+Now let's add [require.js](http://requirejs.org) in.
 
 ### Install
 
@@ -85,6 +85,8 @@ require([], function(){
   alert( "Hello, world." );
 });
 ```
+
+In China, before browser **index.html**, think you need to remove Google and Google Ad related codes out of it. This will avoid network pending.
 
 Then browser your [site](http://localhost) and you will get *"Hello, world."* as alert message.
 
@@ -235,3 +237,18 @@ requirejs.config({
 #### Browser Home page
 "你好，世界！" will be in alert message as **js/common.js** configures **locale** is **"zh-cn"**.
 
+## Further Read
+* [HTML5 Boilerplate](https://html5boilerplate.com/)
+	* HTML5 Boilerplate helps you build fast, robust, and adaptable web apps or sites. Kick-start your project with the combined knowledge and effort of 100s of developers, all in one little package.
+
+* [RequireJS API](http://requirejs.org/docs/api.html)
+	* Learn how to configure
+	* Learn how to create a Module
+	* Learn how to use a Module
+	* Learn how to create a Plugin
+	* Learn how to use a Plugin
+
+* [A list of plugins](https://github.com/jrburke/requirejs/wiki/Plugins) (RequireJS)
+
+* [TodoMVC - Backbone+RequireJS](https://github.com/tastejs/todomvc/tree/master/examples/backbone_require)
+	* After configure with Backbone, you may need this example to learn Backbone with RequireJS.
